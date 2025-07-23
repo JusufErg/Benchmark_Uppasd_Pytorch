@@ -1,0 +1,21 @@
+simid: SCsurf_T
+date: 2025-07-21
+git_revision: v6.0.2-136-g553a
+siminfo:
+    temperature:    0.0000000         
+    timestep:       0.10000000E-14    
+    damping:        0.50000000        
+    nstep:          5000    
+    mode:           LLG
+    alat:           1.0000000         
+    qfile:          ./qfile
+measurables:
+    averages:       Yes
+    trajectories:   No 
+    moments:        No 
+    sqw:            No 
+    ams:            No 
+    nc-ams:         No 
+    totenergy:      Yes
+    cumulants:      No 
+    coord:          Yes
