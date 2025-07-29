@@ -65,7 +65,7 @@ def plot_timing(df, simid):
     print(f" Saved timing plot to: data/{simid}_timing_plot.png")
 
 def plot_boxplots(df, simid):
-    metrics = ["final_energy", "mean_site_diff", "max_site_diff"]
+    metrics = ["final_energy", "Mean per-site angular deviation (°)", "Max per-site angular deviation (°)"]
     for metric in metrics:
         plt.figure()
         df.boxplot(column=metric, by="optimizer")
@@ -80,10 +80,10 @@ def plot_boxplots(df, simid):
 if __name__ == "__main__":
     BASE_DIR = "SkyrmionLattice"
     LR = 0.01
-    STEPS = 1000
+    STEPS = 5000
     SIMID = "SkyrmionTest"
     RESTART_CSV = "data/parsed_restart.csv"
-    RUNS = 5
+    RUNS = 3
 
     OPTIMIZERS = [
         {"name": "adam", "params": {}},
@@ -96,4 +96,3 @@ if __name__ == "__main__":
 
     combined_df = batch_run(BASE_DIR, LR, STEPS, SIMID, RESTART_CSV, OPTIMIZERS, runs=RUNS)
     plot_boxplots(combined_df, SIMID)
-
