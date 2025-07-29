@@ -1,90 +1,81 @@
-import numpy as np
-import pandas as pd
 import os
+import pandas as pd
 
-def parse_restart(restart_file):
-    data = np.loadtxt(restart_file)
-    # Columns: iterens, iatom, site, |Mom|, M_x, M_y, M_z
-    iatom = data[:, 1].astype(int)
-    site = data[:, 2].astype(int)
-    mx = data[:, 4]
-    my = data[:, 5]
-    mz = data[:, 6]
-    spins = pd.DataFrame({
-        "atom": iatom,
-        "site": site,
-        "mx": mx,
-        "my": my,
-        "mz": mz
-    })
-    return spins.set_index("site")
+# Set file paths
+simid = "SCsurf_T"
+restart_file = f"SkyrmionLattice/restart.{simid}.out"
+exchange_file = "SkyrmionLattice/jij"
+dm_file = "SkyrmionLattice/dmdata"
+anisotropy_file = "SkyrmionLattice/anisotropy"  # optional
 
-def parse_exchange(exchange_file):
-    data = np.loadtxt(exchange_file)
-    df = pd.DataFrame(data[:, :6], columns=["i", "j", "dx", "dy", "dz", "Jij"])
-    df[["i", "j"]] = df[["i", "j"]].astype(int)
-    return df
+# Ensure data directory exists
+os.makedirs("data", exist_ok=True)
 
-def parse_dm(dm_file):
-    if not os.path.isfile(dm_file):
-        print(f"[INFO] DM file '{dm_file}' not found. Skipping.")
-        return None
-    data = np.loadtxt(dm_file)
-    df = pd.DataFrame(data, columns=["i", "j", "dx", "dy", "dz", "Dx", "Dy", "Dz"])
-    df[["i", "j"]] = df[["i", "j"]].astype(int)
-    return df
+# --- PARSE RESTART FILE ---
+spins = []
+with open(restart_file, 'r') as f:
+    for line in f:
+        tokens = line.split()
+        if len(tokens) == 7:
+            _, atom_type, site, mag, mx, my, mz = tokens
+            spins.append({
+                "site": int(site),
+                "atom": int(atom_type),
+                "mx": float(mx),
+                "my": float(my),
+                "mz": float(mz)
+            })
 
-def parse_anisotropy(anisotropy_file):
-    if not os.path.isfile(anisotropy_file):
-        print(f"[INFO] Anisotropy file '{anisotropy_file}' not found. Skipping.")
-        return None
-    data = np.loadtxt(anisotropy_file)
-    if data.ndim == 1:
-        data = data.reshape(1, -1)
-    columns = ["site", "mode", "K1", "K2", "ex", "ey", "ez"]
-    if data.shape[1] == 8:
-        columns.append("ratio")
-    df = pd.DataFrame(data, columns=columns)
-    df["site"] = df["site"].astype(int)
-    return df
+spins_df = pd.DataFrame(spins).set_index("site")
+print("\nSpins (first 5 rows):")
+print(spins_df.head())
 
+# SAVE SPINS TO CSV
+spins_df.to_csv("data/parsed_restart.csv", index_label="site")
+print(" Parsed spins saved to data/parsed_restart.csv")
+
+# --- PARSE EXCHANGE FILE ---
+exchange_df = pd.read_csv(exchange_file, delim_whitespace=True, names=["i", "j", "dx", "dy", "dz", "Jij"])
+print("\nExchange (first 5 rows):")
+print(exchange_df.head())
+
+# --- PARSE DM FILE ---
+dm_df = pd.read_csv(dm_file, delim_whitespace=True, names=["i", "j", "dx", "dy", "dz", "Dx", "Dy", "Dz"])
+print("\nDM (first 5 rows):")
+print(dm_df.head())
+
+# --- OPTIONAL: PARSE ANISOTROPY FILE ---
+if os.path.exists(anisotropy_file):
+    aniso_df = pd.read_csv(anisotropy_file, delim_whitespace=True, header=None)
+    print("\nAnisotropy file detected and loaded.")
+else:
+    print("\nNo Anisotropy file loaded.")
+
+# ========== EXPORT FOR BENCHMARKING ==========
 def load_system(base_dir):
-    restart_file = os.path.join(base_dir, "restart.SCsurf_T.out")
-    exchange_file = os.path.join(base_dir, "jij")
-    dm_file = os.path.join(base_dir, "dmdata")
+    spins = pd.read_csv("data/parsed_restart.csv", index_col="site")
 
-    # Auto-detect anisotropy file if exists
-    anisotropy_file = None
-    for f in os.listdir(base_dir):
-        if f.startswith("anisotropy"):
-            anisotropy_file = os.path.join(base_dir, f)
-            break
+    exchange = pd.read_csv(
+        os.path.join("SkyrmionLattice", "jij"),
+        sep=r"\s+",
+        names=["i", "j", "dx", "dy", "dz", "Jij"]
+    )
 
-    spins = parse_restart(restart_file)
-    exchange = parse_exchange(exchange_file)
-    dm = parse_dm(dm_file)
-    anisotropy = parse_anisotropy(anisotropy_file) if anisotropy_file else None
+    dm = pd.read_csv(
+        os.path.join("SkyrmionLattice", "dmdata"),
+        sep=r"\s+",
+        names=["i", "j", "dx", "dy", "dz", "Dx", "Dy", "Dz"]
+    )
 
-    system = {
+    anisotropy_path = os.path.join("SkyrmionLattice", "anisotropy")
+    anisotropy = None
+    if os.path.exists(anisotropy_path):
+        anisotropy = pd.read_csv(anisotropy_path, sep=r"\s+", header=None)
+
+    return {
         "spins": spins,
         "exchange": exchange,
         "dm": dm,
         "anisotropy": anisotropy
     }
-    return system
-
-if __name__ == "__main__":
-    base_path = "SkyrmionLattice"
-    system = load_system(base_path)
-
-    print("\n Spins (first 5 rows):\n", system["spins"].head())
-    print("\n Exchange (first 5 rows):\n", system["exchange"].head())
-    if system["dm"] is not None:
-        print("\n DM (first 5 rows):\n", system["dm"].head())
-    else:
-        print("\n No DM file loaded.")
-    if system["anisotropy"] is not None:
-        print("\n Anisotropy (first 5 rows):\n", system["anisotropy"].head())
-    else:
-        print("\n No Anisotropy file loaded.")
 
