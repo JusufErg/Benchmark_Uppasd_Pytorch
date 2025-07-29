@@ -61,7 +61,6 @@ In this project, we benchmark a suite of first- and second-order optimization al
 
 Understanding these relationships is critical for scaling up simulations and choosing the right optimization strategy in physics-informed machine learning workflows.
 
-
 ## File description
 
 This project is organized into modular Python files that handle parsing, modeling, optimization, evaluation, and benchmarking of spin configurations. Below is a summary of each file, along with its key inputs and outputs.
@@ -93,6 +92,19 @@ The benchmarking process produces several visualizations that compare the perfor
 - **`SkyrmionTest_timing_plot.png`**  
   Shows the total wall-clock time per optimizer across multiple seeds. This plot helps compare the computational efficiency of each method and their suitability for GPU vs. CPU execution.
 
+## Project Particulars
+
+Certain choices in this project were made based on both practical limitations and physical reasoning:
+
+- **Anisotropy Term Omitted**  
+  The SkyrmionLattice example used from UppASD does not specify the **uniaxial anisotropy term** ($K_i (\mathbf{S}_i \cdot \hat{n}_i)^2$) in the Hamiltonian. As a result, this term is omitted during optimization to remain consistent with the input configuration. This simplification avoids introducing mismatches between the reference and modelled systems.
+
+- **External Field Modified**  
+  The external magnetic field term ($\mathbf{B}_{\text{ext}} \cdot \mathbf{S}_i$) was modified in our experiments. While the default in UppASD is often set to zero, we explored different non-zero values of `hfield` to test how well each optimizer handles larger energy scales. The aim was to examine whether stronger external fields would degrade optimizer performance or overpower the effects of DMI and exchange.
+
+Further discussion and analysis of these experiments are provided in the [Results](#results) section below.
+
+> **Note:** The specific UppASD input files used in this project are included in the `SkyrmionLattice/` folder (ie. momfile, qfile, inpsd.dat, dmidata, posfile, jij). 
 
 ## Use
 
