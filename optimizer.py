@@ -108,4 +108,3 @@ def run_optimizer(system, lr=0.1, steps=500, optimizer_name="adam", simid="defau
 
     return optimized_spins
 
-
