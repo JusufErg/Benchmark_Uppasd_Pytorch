@@ -70,7 +70,7 @@ This project is organized into modular Python files that handle parsing, modelin
 | `parser.py`         | `jij`, `dmdata`, `restart.SCsuf_T.out`                              | `data/parsed_restart.csv`                                      |
 | `hamiltonian.py`    | Spin configuration tensor, exchange & DMI data, anisotropy, field  | Energy (scalar/tensor), Gradient                               |
 | `optimizer.py`      | Initial spin config, Hamiltonian function, optimizer name          | Optimized config, loss trajectory, logs                        |
-| `compare_spins.py`  | `optimized_spins.csv`, `parsed_restart.csv`                        | Cosine similarity, angle deviation values/plots                |
+| `compare_spins.py`  | `optimized_spins.csv`, `parsed_restart.csv`                        | Cosine similarity, angle deviation values/plots, in degrees                |
 | `benchmark_runner.py`| Optimizer name, random seed                                       | Log JSON, trajectory CSV, result dict                          |
 | `batch_benchmark.py`| List of optimizers, seed range                                     | Summary plots, log files, aggregate metrics                    |
 
@@ -81,7 +81,7 @@ This project is organized into modular Python files that handle parsing, modelin
 The benchmarking process produces several visualizations that compare the performance of different optimizers on the spin Hamiltonian. These plots are stored in `/data` and include:
 
 - **`SkyrmionTest_mean_site_diff_boxplot.png`**  
-  Displays the distribution of the average per-site angular deviation (in radians or degrees) between each optimizer's result and the UppASD reference configuration. Lower values indicate closer agreement with the true spin texture.
+  Displays the distribution of the average per-site angular deviation (in degrees) between each optimizer's result and the UppASD reference configuration. Lower values indicate closer agreement with the true spin texture.
 
 - **`SkyrmionTest_max_site_diff_boxplot.png`**  
   Shows the maximum deviation for any single spin site across trials. Useful for identifying worst-case performance and stability outliers for each optimizer.
@@ -169,6 +169,13 @@ python batch_benchmark.py
 ```
 
 Results (logs, optimized spins, plots) will be saved in the /data directory.
+
+You can change how many runs you want the code to do in batch_benchmark.py by changing the line 
+
+```
+RUNS = ...
+```
+
 
 ### Comparing Against UppASD Result
 To compare an optimized spin configuration to the UppASD reference (parsed_restart.csv), use:
