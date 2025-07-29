@@ -185,5 +185,9 @@ I would also like to acknowledge the use of **AI tools (specifically ChatGPT)** 
 
 In today’s technological landscape, claiming no AI involvement in academic work may seem, at best, questionable and, at worst, disingenuous. I believe in embracing this new era with transparency and integrity. By clearly stating how AI contributed to this work, I hope to help set a precedent for openness and help foster a culture of honesty in academia. With that being said, trust goes two ways. 
 
-## Licence 
+## License
+
+This project is released under the [MIT License](LICENSE).
+
+Note: This repository depends on the UppASD simulation suite, which is not included and must be obtained separately from UppASD's official website. Please respect their licensing terms when using or redistributing simulation data.
 
