@@ -116,6 +116,7 @@ For more information on how the UppASD code works, see the link to its webpage a
 
 ### Directory structure
 
+<pre>
 benchmark_project/
 ├── SkyrmionLattice/           # Must be copied from UppASD
 ├── batch_benchmark.py
@@ -125,30 +126,49 @@ benchmark_project/
 ├── hamiltonian.py
 ├── optimizer.py
 ├── parser.py
+</pre>
 
-### Parsing
-
-First you need to run your UppASD simulation, afterwhich you parse the files with the command line
+### Parsing UppASD Output
+First run your UppASD simulation. Afterward, parse the output with:
 
 ```bash
 python parser.py
 ```
 
-Make sure the parsed_restar.csv file has been generated and is under /data files. 
+This reads files like restart.SCsuf_T.out from SkyrmionLattice/ and saves the result to:
 
-### Run the benchmarking code
-
-To run for a single or few optimizer simply run the command line
-
-```bash
-python batch_benchmark.py --adam --adamw etc.
+```
+data/parsed_restart.csv
 ```
 
-To run all the optimizer simply run 
+Make sure this file exists before proceeding to benchmarking.
+
+### Running the Benchmarking Code
+To run benchmarking for specific optimizers, use:
+
+```bash
+python batch_benchmark.py --adam --adamw --sgd
+```
+
+To run all optimizers with default settings:
 
 ```bash
 python batch_benchmark.py
 ```
+
+Results (logs, optimized spins, plots) will be saved in the /data directory.
+
+### Comparing Against UppASD Result
+To compare an optimized spin configuration to the UppASD reference (parsed_restart.csv), use:
+
+```bash
+python compare_spins.py --file path/to/your/spins.csv
+```
+
+This outputs:
+
+Mean angular deviation (how far each spin tilts, on average)
+Maximum per-site angular deviation (worst-case spin error)
 
 
 ## Results
