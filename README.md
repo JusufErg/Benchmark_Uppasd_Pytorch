@@ -80,10 +80,10 @@ This project is organized into modular Python files that handle parsing, modelin
 
 The benchmarking process produces several visualizations that compare the performance of different optimizers on the spin Hamiltonian. These plots are stored in `/data` and include:
 
-- **`SkyrmionTest_mean_site_diff_boxplot.png`**  
+- **`SkyrmionTest_Mean per-site angular deviation (°)_boxplot.png`**  
   Displays the distribution of the average per-site angular deviation (in degrees) between each optimizer's result and the UppASD reference configuration. Lower values indicate closer agreement with the true spin texture.
 
-- **`SkyrmionTest_max_site_diff_boxplot.png`**  
+- **`SkyrmionTest_Max per-site angular deviation (°)_boxplot.png`**  
   Shows the maximum deviation for any single spin site across trials. Useful for identifying worst-case performance and stability outliers for each optimizer.
 
 - **`SkyrmionTest_final_energy_boxplot.png`**  
