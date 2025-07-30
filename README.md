@@ -116,6 +116,8 @@ Further discussion and analysis of these experiments are provided in the [Result
 - PyTorch
 - NumPy, Pandas, Matplotlib
 
+> **Note** specifically, when the code was written these were the versions used: Python 3.9.23, [Clang 14.0.6 ], Torch 2.2.2, Pandas 2.3.0+4.g1dfc98e16a, NumPy 1.26.4
+
 You also need a working installation of **UppASD** to generate simulation data.
 
 > **Note:** You must copy the `SkyrmionLattice` folder from the UppASD distribution into your local directory.
