@@ -135,6 +135,39 @@ After running the benchmark pipeline, the following files will appear in the `da
 
 These plots summarize the performance and consistency of each optimizer across runs.
 
+### The Results Files
+
+The `results_*_*` files store benchmark data from runs with different external magnetic fields (`hfield`) and learning rates.
+
+The naming convention is:
+
+- `results_<z>_<lr>`  
+  where:
+  
+  - `<z>` is the negative z-component of the applied external magnetic field (`hfield = [0, 0, -z]`).  
+    - For example, `results_75_*` corresponds to `hfield = [0, 0, -75]`, and `results_1_*` to `hfield = [0, 0, -1]`.
+    - The values tested were -5, -1, -0.1, and 0. 
+  
+  - `<lr>` encodes the learning rate:
+    - `point1` refers to `0.1`
+    - `point01` refers to `0.01`
+  
+Thus:
+- `results_75_point1` → `hfield = [0, 0, -75]`, `lr = 0.1`
+- `results_1_point01` → `hfield = [0, 0, -1]`, `lr = 0.01`
+
+These results were generated on the **Dardel supercomputer** at KTH, Sweden, using the following parameters:
+
+```python
+LR = 0.1 or 0.01
+STEPS = 1000
+SIMID = "SkyrmionTest"
+RESTART_CSV = "data/parsed_restart.csv"
+RUNS = 10
+```
+
+You can find detailed explanations and discussion of these results under the **Results** section below.
+
 ## Project Particulars
 
 Certain choices in this project were made based on both practical limitations and physical reasoning:
