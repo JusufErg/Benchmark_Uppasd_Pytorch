@@ -94,6 +94,47 @@ The benchmarking process produces several visualizations that compare the perfor
 - **`SkyrmionTest_timing_plot.png`**  
   Shows the total wall-clock time per optimizer across multiple seeds. This plot helps compare the computational efficiency of each method and their suitability for GPU vs. CPU execution.
 
+### Output Files and Their Descriptions
+
+After running the benchmark pipeline, the following files will appear in the `data/` directory:
+
+#### Spin Configurations
+- `parsed_restart.csv`  
+  Parsed from `restart.<simid>.out` (UppASD output). Contains the initial spin configuration.  
+  **Columns:** `site, atom, mx, my, mz`
+
+- `optimized_spins_<simid>_<optimizer>.csv`  
+  Final spin configuration after optimization with the specified optimizer.  
+  One file per optimizer and run.  
+  **Columns:** `mx, my, mz, atom` (indexed by site)
+
+---
+
+#### Energy Logs
+- `energy_log_<simid>_<optimizer>.csv`  
+  Records energy values at each optimization step.  
+  **Columns:** `step, total, heisenberg, dmi, anisotropy`
+
+---
+
+#### Benchmark Summaries
+- `benchmark_summary_<simid>_runN.csv`  
+  Summary for each run, including final energy and angular deviations.
+
+- `batch_summary_<simid>.csv`  
+  Combined summary across all runs and optimizers.  
+  **Columns:** `optimizer, final_energy, mean_angle, max_angle, run`
+
+---
+
+#### Timing
+- `timing_log.csv`  
+  Records wall-clock time for each optimizer per run.  
+  **Columns:** `optimizer, run, time (seconds)`
+
+
+These plots summarize the performance and consistency of each optimizer across runs.
+
 ## Project Particulars
 
 Certain choices in this project were made based on both practical limitations and physical reasoning:
@@ -196,7 +237,7 @@ Maximum per-site angular deviation (worst-case spin error)
 
 ## Results
 
-
+### output files
 
 ## Acknowledgements
 
