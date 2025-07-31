@@ -303,7 +303,24 @@ In today’s technological landscape, claiming no AI involvement in academic wor
 
 ## References
 
+1. **UppASD Tutorial**  
+   [https://uppasd.github.io/UppASD-tutorial/](https://uppasd.github.io/UppASD-tutorial/)
 
+2. **PyTorch Optimizers Documentation**  
+   [https://pytorch-optimizers.readthedocs.io](https://pytorch-optimizers.readthedocs.io)
+
+3. **PyTorch `torch.optim.SGD` API**  
+   [https://docs.pytorch.org/docs/stable/generated/torch.optim.SGD.html](https://docs.pytorch.org/docs/stable/generated/torch.optim.SGD.html)
+
+4. **O. Eriksson, A. Bergman, L. Bergqvist, and J. Hellsvik**,  
+   *Atomistic Spin Dynamics: Foundations and Applications*,  
+   Oxford University Press, Oxford, 2017.
+
+5. **Google Scholar Profile – Anna Delin**  
+   [https://scholar.google.com/citations?user=CozyP-IAAAAJ&hl=en](https://scholar.google.com/citations?user=CozyP-IAAAAJ&hl=en)
+
+6. **Google Scholar Profile – Qichen Xu**  
+   [https://scholar.google.com/citations?user=dRr8Li0AAAAJ&hl=en](https://scholar.google.com/citations?user=dRr8Li0AAAAJ&hl=en)
 
 ## License
 
