@@ -272,7 +272,24 @@ Maximum per-site angular deviation (worst-case spin error)
 
 ## Results
 
-### output files
+| hfield / learning rate |   -5   |    -1   |   -0.1                            |   0.0                                      |
+|------------------------|--------|---------|----------------------------------|--------------------------------------------|
+| 0.01                   | sgd    | fastest: msprop<br>most accurate: lbfgs | fastest: sgd<br>most accurate: lbfgs       | fastest: sgd<br>most accurate: sgd, lbfgs       |
+| 0.1                    | sgd    | sgd     | fastest: sgd, adagrad<br>most accurate: lbfgs | fastest: sgd<br>most accurate: all except adamw |
+>**Table of Results** 
+
+The fastest optimizer was determined by inspecting time boxplots: the one with the lowest median value and least variance was considered fastest.  
+Accuracy was assessed using boxplots of convergence angles—since there was virtually no spread across runs, the optimizer showing the smallest average deviation from the UppASD spins was deemed most accurate. In cases were only one optmizer is mentioned means that it was both the fastest and most accurate. 
+
+The conclusions reflect the behavior observed in the plots. Most optimizers successfully converged across fields and learning rates, with the notable exception of **AdamW**, which consistently showed the largest deviation—though still on the order of `10⁻⁶`, which is small in absolute terms. Importantly, all optimizers reached the **same final energy**, indicating convergence to similar minima regardless of the optimizer used.
+
+Learning rate did not hinder convergence in any case, though it did affect optimizer dynamics. The clearest overall winners are:
+
+- **SGD**, which was consistently the fastest to converge and maintained competitive accuracy.
+- **L-BFGS**, which although typically slower, delivered the most accurate spin configurations in several regimes.
+
+Together, these results suggest that **SGD is the most practical choice** when speed is critical, while **L-BFGS** offers higher precision when accuracy of spin alignment is the primary concern.
+
 
 ## Acknowledgements
 
