@@ -76,7 +76,7 @@ This project is organized into modular Python files that handle parsing, modelin
 
 > Output files are stored in `/data` by default. Parsed spin states from UppASD are saved as `parsed_restart.csv` and serve as the benchmark reference.
 > 
-The remaining files are the specific input files used for the UppASD simulation, included here to allow for reproducibility of the results.
+The SkyrmionLattice files are the specific input files used for the UppASD simulation, included here to allow for reproducibility of the results.
 
 ### Generated Plots
 
