@@ -137,6 +137,8 @@ These plots summarize the performance and consistency of each optimizer across r
 
 ### The Results Files
 
+The final two files in the repository are zipped archives containing all the benchmarking results. These were compressed because their expanded size exceeded GitHub's upload limit. When expanded you will see further files named `results_<a number>_<point either 1 or 01>`. 
+
 The `results_*_*` files store benchmark data from runs with different external magnetic fields (`hfield`) and learning rates.
 
 The naming convention is:
