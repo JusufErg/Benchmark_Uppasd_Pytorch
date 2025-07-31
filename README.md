@@ -279,7 +279,7 @@ Maximum per-site angular deviation (worst-case spin error)
 >**Table of Results** 
 
 The fastest optimizer was determined by inspecting time boxplots: the one with the lowest median value and least variance was considered fastest.  
-Accuracy was assessed using boxplots of convergence angles—since there was virtually no spread across runs, the optimizer showing the smallest average deviation from the UppASD spins was deemed most accurate. In cases were only one optmizer is mentioned means that it was both the fastest and most accurate. 
+Accuracy was assessed using boxplots of convergence angles—since there was virtually no spread across runs, the optimizer showing the smallest average deviation from the UppASD spins was deemed most accurate. In cases where only one optimizer is mentioned, it was both the fastest and most accurate. 
 
 The conclusions reflect the behavior observed in the plots. Most optimizers successfully converged across fields and learning rates, with the notable exception of **AdamW**, which consistently showed the largest deviation—though still on the order of `10⁻⁶`, which is small in absolute terms. Importantly, all optimizers reached the **same final energy**, indicating convergence to similar minima regardless of the optimizer used.
 
@@ -299,7 +299,7 @@ I would like to express my sincere gratitude to **Digital Futures** and **KTH** 
 
 I would also like to acknowledge the use of **AI tools (specifically ChatGPT)** during the course of this project. These tools were utilized for various purposes, including debugging, outlining code, refining language, and assisting in the discussion of results.
 
-In today’s technological landscape, claiming no AI involvement in academic work may seem, at best, questionable and, at worst, disingenuous. I believe in embracing this new era with transparency and integrity. By clearly stating how AI contributed to this work, I hope to help set a precedent for openness and help foster a culture of honesty in academia. With that being said, trust goes two ways. 
+In today’s technological landscape, claiming no AI involvement in academic work may seem, at best, questionable and, at worst, disingenuous. I believe in embracing this new era with transparency and integrity. By clearly stating how AI contributed to this work, I hope to help set a precedent for openness and help foster a culture of honesty in academia. That said, trust is reciprocal. 
 
 ## References
 
@@ -312,9 +312,8 @@ In today’s technological landscape, claiming no AI involvement in academic wor
 3. **PyTorch `torch.optim.SGD` API**  
    [https://docs.pytorch.org/docs/stable/generated/torch.optim.SGD.html](https://docs.pytorch.org/docs/stable/generated/torch.optim.SGD.html)
 
-4. **O. Eriksson, A. Bergman, L. Bergqvist, and J. Hellsvik**,  
-   *Atomistic Spin Dynamics: Foundations and Applications*,  
-   Oxford University Press, Oxford, 2017.
+4. O. Eriksson, A. Bergman, L. Bergqvist, and J. Hellsvik.  
+   *Atomistic Spin Dynamics: Foundations and Applications*. Oxford University Press, 2017.
 
 5. **Google Scholar Profile – Anna Delin**  
    [https://scholar.google.com/citations?user=CozyP-IAAAAJ&hl=en](https://scholar.google.com/citations?user=CozyP-IAAAAJ&hl=en)
