@@ -326,4 +326,10 @@ In today’s technological landscape, claiming no AI involvement in academic wor
 This project is released under the [MIT License](LICENSE).
 
 Note: This repository depends on the UppASD simulation suite, which is not included and must be obtained separately from UppASD's official website. Please respect their licensing terms when using or redistributing simulation data.
+## Author
+
+**Jusuf Ergashev**  
+MSc Student in Engineering Physics  
+KTH Royal Institute of Technology  
+[LinkedIn](https://www.linkedin.com/in/jusuf-ergashev-9a1429204?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3Bzg05Bj4HRByShJv%2B1IQrAA%3D%3D)
 
