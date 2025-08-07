@@ -11,7 +11,7 @@ This repository provides benchmarking framework for testing various AI-based opt
 The physical system modeled in this project is described by the **atomistic spin Hamiltonian**, capturing the interactions between localized magnetic moments on a lattice. The total energy is given by:
 
 
-![Hamiltonian](https://latex.codecogs.com/png.image?\dpi{150}&space;\mathcal{H}=-\sum_{i\ne&space;j}J_{ij}\,\mathbf{S}_i\cdot\mathbf{S}_j-\sum_{i\ne&space;j}\mathbf{D}_{ij}\cdot(\mathbf{S}_i\times\mathbf{S}_j)-\sum_i&space;K_i(\mathbf{S}_i\cdot\hat{n}_i)^2-\sum_i\mathbf{B}_{\text{ext}}\cdot\mathbf{S}_i)
+![Hamiltonian](https://latex.codecogs.com/png.image?\dpi{150}&space;\mathcal{H}=-\sum_{i\ne&space;j}J_{ij}\mathbf{S}_i\cdot\mathbf{S}_j-\sum_{i\ne&space;j}\mathbf{D}_{ij}\cdot(\mathbf{S}_i\times\mathbf{S}_j)-\sum_i&space;K_i(\mathbf{S}_i\cdot\hat{n}_i)^2-\sum_i\mathbf{B}_{\text{ext}}\cdot\mathbf{S}_i)
 
 Where:
 
