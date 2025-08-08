@@ -27,6 +27,10 @@ Each term corresponds to a distinct physical mechanism:
 - **DMI**: Introduces chiral interactions that stabilize topological structures like skyrmions.
 - **Anisotropy**: Encodes material-specific energy penalties for spin directions.
 - **External Field**: Aligns spins along the field direction and can drive transitions between spin textures.
+- **Ferromagnetism** is a magnetic ordering where neighboring spins align parallel due to exchange interactions, resulting in a net magnetization even without an external field.
+- **Spin** refers to the intrinsic angular momentum of electrons, modeled here as classical unit vectors representing localized magnetic moments on atomic sites.
+
+
 
 This Hamiltonian governs a complex energy landscape. Optimizing it requires numerical methods capable of navigating such spaces efficiently — motivating the use and benchmarking of modern AI-based optimizers. 
 
